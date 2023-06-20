@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="fragments/fragment::head">
+
+</head>
+<body>
+<div th:replace="fragments/fragment::navigation"></div>
+
+<div class="container">
+  <h1 th:text="#{change_role}" class="text-center text-white">Change User Role</h1>
+
+  <form th:method="POST" th:action="@{/users/change-role}" th:object="${userRoleDto}"
+        class="main-form mx-auto col-md-8 d-flex flex-column justify-content-center">
+    <label th:text="#{select_user}" for="userEmail" class="text-white">Select a User:</label>
+    <select  name="userEmail" id="userEmail" th:field="*{userEmail}" class="form-control" th:errorclass="is-invalid">
+      <option  value="">- Select a User  -</option>
+
+      <option th:each="user : ${users}" th:value="${user.email}" th:text="${user.email}"></option>
+
+    </select>
+
+    <p th:if="${#fields.hasErrors('userEmail')}" th:errors="*{userEmail}" class="invalid-feedback errors alert alert-danger">
+
+    </p>
+
+    <label th:text="#{select_role}" for="userRole" class="text-white">Select a Role:</label>
+    <select name="userRole" id="userRole" th:field="*{userRole}" class="form-control" th:errorclass="is-invalid">
+      <!-- Loop through all roles and display them in the dropdown -->
+      <option value="">- Select a Role -</option>
+      <option th:each="r : ${T(project.laptop.model.entity.enums.UserRoleEnum).values()}"
+              th:value="${r}" th:text="${r}">
+
+    </select>
+    <p th:if="${#fields.hasErrors('userEmail')}" th:errors="*{userEmail}" class="invalid-feedback errors alert alert-danger">
+
+    </p>
+    <div class="row">
+      <div class="col col-md-4">
+    <button th:text="#{submit}" type="submit" class="btn btn-outline-info my-2 my-sm-0" >Submit</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+
+
+<footer th:replace="fragments/fragment::footer"></footer>
+</body>
+</html>

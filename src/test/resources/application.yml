@@ -1,0 +1,70 @@
+﻿
+spring:
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/project?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC
+    username: root
+    password: 12345
+
+
+
+
+
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    hibernate:
+      ddl-auto: create-drop
+    defer-datasource-initialization: true
+
+#  mvc:
+#    hiddenmethod:
+#      filter:
+#        enabled: true
+
+
+
+  security:
+    oauth2:
+      client:
+        registration:
+          facebook:
+            client-id: 739797924529702
+            client-secret: 97e71d3cec37b8ee452f587d074e0177
+
+
+
+  sql:
+    init:
+      mode: never
+
+#
+#logging:
+#  level:
+#    #    org.springframework: DEBUG
+#    org.hibernate.SQL: DEBUG
+#    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+#    org.springframework.security: DEBUG
+
+
+mail:
+  host: "localhost"
+  port: 1025
+  username: "laptopFinder@gmail.com"
+  password: ""
+
+
+
+
+
+#management:
+#  server:
+#    port: 8000
+#  endpoints:
+#    web:
+#      base-path: /actuator
+#      exposure:
+#        include: "*"
+server:
+  port: 8000
+
+

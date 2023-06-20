@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      >
+<head >
+    <meta charset="UTF-8">
+    <title>LaptopFinder</title>
+    <link rel="icon" type="image/x-icon" th:href="@{/images/favicon.ico}">
+
+    <link rel="stylesheet" th:href="@{/css/reset-css.css}"/>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}"/>
+    <script src="/js/jquery-3.5.1.slim.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script
+            async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzh_rL0owJKp4Q-nE6yFC0VvHBmy5aP_8&callback=initMap&v=weekly"
+
+    ></script>
+    <style>
+        #map{
+            position: absolute;
+            top: 50%;
+            left: 22%;
+            transform: translate(-30%, -50%);
+            height:400px;
+            width: 38%;
+            z-index: 1;
+
+            border-radius: 10px;
+
+        }
+
+    </style>
+</head>
+
+<body >
+
+<div th:replace="fragments/fragment::navigation"></div>
+
+
+
+<div id="map"></div>
+
+
+<div class="container">
+    <div class="map">
+
+        <script>
+            function initMap() {
+                var options= {
+                    zoom:8,
+                    center:{lat: 42.698334,lng: 23.319941}
+                }
+
+                var map= new google.maps.Map(document.getElementById('map'),options)
+
+                var marker=new google.maps.Marker({
+                    position: {lat: 42.6564,lng:23.3438},
+                    map:map
+                });
+            }
+        </script>
+
+    </div>
+    <div class="business-card-container">
+        <div class="business-card">
+            <div class="card-front"></div>
+            <div class="card-back">
+                <p th:text="#{about_address}"></p>
+                <p>089 099 9999</p>
+                <p>LaptopFinder@gmail.com</p>
+                <p>www.LaptopFinder.bg</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<footer th:replace="fragments/fragment::footer"></footer>
+</body>
+</html>

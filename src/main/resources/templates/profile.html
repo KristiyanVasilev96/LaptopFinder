@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments/fragment::head">
+
+</head>
+
+<body>
+<header>
+    <div th:replace="fragments/fragment::navigation"></div>
+</header>
+
+<main>
+    <div class="edit-card">
+        <h2 th:text="#{profile}" class="text-white">Profile</h2>
+
+        <div class="edit-image">
+            <img src="/images/user-avatar.svg" alt="Profile Image"/>
+
+        </div>
+
+        <div class="edit-details">
+            <p class="text-white">
+                <th:block th:text="#{full_name}"></th:block>
+                <span th:text="${firstName + ' ' + lastName}"></span></p>
+            <p class="text-white">
+                <th:block th:text="#{profile_current_email} + ' '"></th:block>
+                <span th:text="${email}"></span></p>
+            <p class="text-white">
+                <th:block th:text="#{profile_role}"></th:block>
+                <span th:text="${role}"></span>
+            </p>
+        </div>
+
+        <a href="/users/edit-profile" th:text="#{edit_profile}" class="btn btn-outline-info my-2 my-sm-0">Edit
+            Profile</a>
+    </div>
+</main>
+
+</body>
+</html>

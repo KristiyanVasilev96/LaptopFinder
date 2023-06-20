@@ -1,0 +1,20 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      >
+<head th:replace="fragments/fragment::head">
+
+</head>
+<body>
+<div th:replace="fragments/fragment::navigation"></div>
+
+<div class="container-fluid">
+  <h5 class="text-center text-white mt-5">
+
+    <th:block th:text="#{error_404}"></th:block>
+
+
+  </h5>
+</div>
+
+</body>
+</html>

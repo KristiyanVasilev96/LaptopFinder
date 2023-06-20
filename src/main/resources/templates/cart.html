@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head">
+    <meta charset="UTF-8">
+    <title>LaptopFinder</title>
+    <link rel="icon" type="image/x-icon" th:href="@{/images/favicon.ico}">
+
+    <link rel="stylesheet" th:href="@{/css/reset-css.css}"/>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}"/>
+    <script src="/js/jquery-3.5.1.slim.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div th:replace="fragments/fragment::navigation"></div>
+
+<div class="container px-3 my-5 clearfix">
+    <!-- Shopping cart table -->
+    <div class="card">
+        <div class="card-header text-center">
+            <h2 th:text="#{shopping_cart}">Shopping Cart</h2>
+        </div>
+        <div class="card-body">
+            <div th:if="${cart.offers.size()==0}" th:text="#{cart_items}" class="bg-danger text-center py-3">
+
+            </div>
+            <div class="table-responsive">
+                <table class="table table-bordered m-0">
+                    <thead>
+                    <tr>
+                        <th th:text="#{product_details}" class="text-center py-3 px-4" style="min-width: 400px;">Product Name &amp; Details</th>
+                        <th th:text="#{price}" class="text-right py-3 px-4" style="width: 100px;">Price</th>
+<!--                        <th class="text-right py-3 px-4" style="width: 100px;">Remove</th>-->
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="offer : ${cart.offers}">
+                        <td class="p-4">
+                            <div class="media align-items-center">
+                                <img th:src="@{${offer.imageUrl}}" class="d-block ui-w-40 ui-bordered mr-4" alt="">
+                                <div class="media-body">
+                                    <a th:href="@{/offers/{id}(id=${offer.id})}" class="d-block text-dark" th:text="${offer.model.brand.name} + ' ' + ${offer.model.name}"></a>
+
+                                    <div class="text-muted"><span th:text="#{offers_condition}+' '">• Condition </span><th:block th:text="*{offer.laptopCondition}"></th:block></div>
+                                    <div class="text-muted"><span th:text="#{offers_ram}+' '">• Ram </span><th:block th:text="*{offer.ram}"></th:block></div>
+                                    <div class="text-muted"><span th:text="#{offers_OS}+' '">• OS </span><th:block th:text="*{offer.operationSystem}"></th:block></div>
+
+                                </div>
+                            </div>
+                        </td>
+                        <td class="text-right font-weight-semibold align-middle p-4">
+                            <th:block>
+                                <div class="d-inline-block" th:text="${offer.price}"></div>
+                                <span class="ml-1" th:text="#{lv}"></span>
+                            </th:block>
+                        </td>
+                        <td class="text-center align-middle px-0">
+                            <form th:method="post" th:action="@{/cart/{offerId}/remove(offerId=${offer.id})}">
+                                <input type="hidden" name="offerId" th:value="${offer.id}">
+                                <button type="submit" class="shop-tooltip close float-none text-danger" title="" data-original-title="Remove">X</button>
+                            </form>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- / Shopping cart table -->
+            <div class="d-flex flex-wrap justify-content-between align-items-center pb-4">
+                <div class="d-flex">
+                    <div class="text-right mt-4">
+                        <label th:text="#{totalPrice}" class="text-muted font-weight-normal m-0">Total price</label>
+                        <div  class="text-large">
+                            <th:block>
+                                <span th:text="${totalPrice}" ></span>
+                                <span th:text="#{lv}"></span>
+                            </th:block>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="float-right">
+                <a href="/offers/all" th:text="#{back_to_offers}" class="btn btn-lg btn-outline-info md-btn-flat mt-2 mr-3">Back to Offers</a>
+               <th:block th:unless="${cart.offers.size()==0}">
+                   <form th:method="DELETE" th:action="@{/cart/buyAll}">
+                       <button type="submit" class="btn btn-lg btn-outline-success mt-2" th:text="#{buy}">buyAll</button>
+                   </form>
+               </th:block>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

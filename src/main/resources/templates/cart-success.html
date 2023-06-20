@@ -1,0 +1,20 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="fragments/fragment::head">
+
+</head>
+<body>
+<div th:replace="fragments/fragment::navigation"></div>
+
+<div class="container mt-5">
+    <div class="alert alert-success" role="alert">
+        <h4 class="alert-heading" th:text="#{success_order}">Order successful!</h4>
+        <p th:text="#{success_purchase}">Thank you for your purchase.</p>
+        <hr>
+        <p th:text="#{success_email}" class="mb-0">You will receive a confirmation email shortly.</p>
+    </div>
+</div>
+
+</body>
+</html>

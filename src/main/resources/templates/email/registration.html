@@ -1,0 +1,20 @@
+﻿<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1 th:text="#{registration_welcome}">Welcome to LaptopFinder! </h1>
+<th:block th:text="#{registration_dear_user(${userName})}">Dear Pesho</th:block>
+
+
+
+<p th:text="#{registration_happy}">
+    We are happy that you are a part of our community now!
+</p>
+
+<th:block th:text="#{registration_best_regards}">Best, LaptopFinder team</th:block>
+</body>
+</html>

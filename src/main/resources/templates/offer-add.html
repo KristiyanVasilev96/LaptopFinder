@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/fragment::head">
+
+</head>
+
+<body>
+
+<div th:replace="fragments/fragment::navigation">
+
+</div>
+
+
+<div class="container">
+    <h2 th:text="#{fragment_add_offers}" class="text-center text-white">Upload Offer</h2>
+    <form th:method="POST" th:action="@{/offers/add}" th:object="${addOfferModel}" enctype="multipart/form-data"
+          class="main-form mx-auto col-md-8 d-flex flex-column justify-content-center">
+        <div class="row">
+
+            <div class="form-group col-md-6 mb-3">
+                <label th:text="#{offers_model}" class="text-center text-white font-weight-bold" for="modelId">Model</label>
+                <select id="modelId"
+                        name="modelId"
+                        th:errorclass="is-invalid"
+                        class="form-control">
+                    <option value="">- Select a model -</option>
+
+                        <optgroup
+                                th:each="brand : ${brands}"
+                                th:label="${brand.name}">
+                            <option
+                                    th:each="model : ${brand.models}"
+                                    th:text="${model.name}"
+                                    th:value="${model.id}"
+                                    th:selected="*{modelId} == ${model.id}">Model
+                            </option>
+                        </optgroup>
+
+
+                </select>
+                <p th:if="${#fields.hasErrors('modelId')}" th:errors="*{modelId}" class="invalid-feedback errors alert alert-danger">
+                    Laptop model is required.
+                </p>
+            </div>
+            <div class="form-group col-md-6 mb-3">
+                <label th:text="#{offers_price}" for="price" class="text-white font-weight-bold">Price</label>
+                <input th:errorclass="is-invalid" name="price" id="price" type="number" min="0" step="100" class="form-control"
+                       placeholder="Suggested price"/>
+                <p th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="invalid-feedback errors alert alert-danger">
+                    Suggested price is required.
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6 mb-3">
+                <label th:text="#{offers_OS}" class="text-center text-white font-weight-bold" for="operationSystem">Operation System</label>
+                <select th:errorclass="is-invalid" id="operationSystem" name="operationSystem" class="form-control">
+                    <option  value="">- Select Operation System -</option>
+                    <option th:each="o : ${T(project.laptop.model.entity.enums.OperationSystem).values()}"
+                            th:value="${o}" th:text="${o}">
+                        Operation System type
+                    </option>
+                </select>
+                <p th:if="${#fields.hasErrors('operationSystem')}" th:errors="*{operationSystem}" class="invalid-feedback errors alert alert-danger">
+                    Operation System is required.
+                </p>
+            </div>
+            <div class="form-group col-md-6 mb-3">
+                <label th:text="#{offers_condition}" class="text-center text-white font-weight-bold" for="laptopCondition">Condition</label>
+                <select th:errorclass="is-invalid" id="laptopCondition" name="laptopCondition" class="form-control">
+                    <option value="">- Select Condition -</option>
+                    <option th:each="c : ${T(project.laptop.model.entity.enums.ConditionEnum).values()}"
+                    th:value="${c}" th:text="${c}"> Condition type
+                    </option>
+                </select>
+                <p th:if="${#fields.hasErrors('laptopCondition')}" th:errors="*{laptopCondition}" class="invalid-feedback errors alert alert-danger">
+                    Condition type is required.
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6 mb-3">
+                <label th:text="#{offers_ram}" for="ram" class="text-white font-weight-bold">Ram</label>
+                <input th:errorclass="is-invalid"  id="ram" name="ram" type="number" min="4"  step="1" class="form-control"
+                       placeholder="Ram"/>
+                <p th:if="${#fields.hasErrors('ram')}" th:errors="*{ram}" class="invalid-feedback errors alert alert-danger">
+                    Ram specifications are required.
+                </p>
+            </div>
+            <div class="form-group col-md-6 mb-3">
+                <label th:text="#{offers_weight}" for="weight" class="text-white font-weight-bold">Weight</label>
+                <input th:errorclass="is-invalid" id="weight" name="weight" type="number" min="0" max="5000" step="0.1"
+                       class="form-control"
+                       placeholder="Weight in kg"/>
+                <p  th:if="${#fields.hasErrors('weight')}" th:errors="*{weight}" class="invalid-feedback errors alert alert-danger">
+                   Weight in kg is Required!
+                </p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label th:text="#{offers_description}" class="text-white font-weight-bold" for="description">Description</label>
+            <textarea th:errorclass="is-invalid" id="description" name="description" type="textarea" class="form-control" rows="3"
+                      placeholder="Description"></textarea>
+            <p th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class= "invalid-feedback errors alert alert-danger">
+                Description is required.
+            </p>
+        </div>
+        <div class="form-group">
+            <label th:text="#{offers_image}" class="text-white font-weight-bold" for="imageUrl">Image URL</label>
+            <input
+                    th:errorclass="is-invalid"
+                    id="imageUrl"
+                    name="imageUrl"
+                    type="file"
+                    class="form-control"
+                   placeholder="Put vehicle image URL here">
+            <p th:if="${#fields.hasErrors('imageUrl')}" th:errors="*{imageUrl}" class="invalid-feedback errors alert alert-danger">
+                Laptop image URL is required.
+            </p>
+        </div>
+
+        <div class="row">
+            <div class="col col-md-4">
+                <div class="button-holder d-flex">
+                    <input type="submit" class="btn btn-outline-info my-2 my-sm-0" th:value="#{fragment_add_offers}"/>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+
+</body>
+</html>

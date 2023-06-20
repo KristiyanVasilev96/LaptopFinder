@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments/fragment::head">
+
+</head>
+
+<body>
+
+<div th:replace="fragments/fragment::navigation">
+
+</div>
+
+
+<div class="container-fluid">
+  <h5 class="text-center text-white mt-5">
+
+   <th:block th:text="#{error_403}"></th:block>
+
+
+  </h5>
+</div>
+
+<div>
+  <footer th:replace="fragments/fragment::footer" ></footer>
+</div>
+
+</body>
+</html>

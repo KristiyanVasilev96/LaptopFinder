@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments/fragment::head">
+
+</head>
+<body>
+<header>
+    <div th:replace="fragments/fragment::navigation"></div>
+</header>
+<main>
+    <div class="edit-card">
+        <h2 class="text-white" th:text="#{edit_profile}" >Edit Profile</h2>
+
+        <form th:action="@{/users/edit-profile}" th:method="POST" th:object="${updateEmailDTO}">
+            <div class="form-group">
+                <label class="text-white" for="currentEmail" th:text="#{profile_current_email}">Current email:</label>
+                <input type="text" class="form-control" id="currentEmail" name="currentEmail" th:value="${currentEmail}" disabled>
+            </div>
+            <div class="form-group">
+                <label class="text-white" for="email" th:text="#{new_email}">New email:</label>
+                <input th:field="*{email}" th:errorclass="is-invalid" type="email" class="form-control" id="email" name="email">
+
+                <div  th:if="${#fields.hasErrors('email')}" class="invalid-feedback errors alert alert-danger" th:errors="*{email}"></div>
+            </div>
+            <div class="form-group">
+                <label class="text-white" for="confirmEmail" th:text="#{confirm_email}">Confirm email:</label>
+                <input th:field="*{confirmEmail}" th:errorclass="is-invalid" type="email" class="form-control" id="confirmEmail" name="confirmEmail">
+
+                <div  class="invalid-feedback errors alert alert-danger"  th:if="${#fields.hasErrors('confirmEmail')}" th:errors="*{confirmEmail}" id="confirmEmailError"></div>
+            </div>
+
+
+
+
+
+            <div class="text-center">
+                <button type="submit" class="btn btn-outline-info my-2 my-sm-0" th:text="#{save}">Save changes</button>
+            </div>
+        </form>
+    </div>
+</main>
+
+
+</body>
+</html>
