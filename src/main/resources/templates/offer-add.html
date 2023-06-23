@@ -115,7 +115,8 @@
                     name="imageUrl"
                     type="file"
                     class="form-control"
-                   placeholder="Put vehicle image URL here">
+                   placeholder="Put image URL here" required>
+
             <p th:if="${#fields.hasErrors('imageUrl')}" th:errors="*{imageUrl}" class="invalid-feedback errors alert alert-danger">
                 Laptop image URL is required.
             </p>
