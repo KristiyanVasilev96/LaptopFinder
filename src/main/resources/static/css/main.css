@@ -507,13 +507,14 @@ body{
     border-radius: 50%;
 }
 .comments {
-    width: 67%; /* Adjust this value to make it narrower */
-    max-height: 500px; /* Adjust this value to make it shorter */
-    overflow-y: scroll; /* Add scroll bar if the content overflows */
-    margin: 0 auto; /* Center the section horizontally */
-    padding: 20px; /* Add some padding to the section */
+    position: relative;
+    width: 67%;
+    max-height: 500px;
+    overflow-y: scroll;
+    margin: 0 auto;
+    padding: 20px;
     background-image: linear-gradient(to bottom right, rgb(220, 220, 220), rgba(255, 255, 255, 0.9));
-    border-radius: 5px; /* Round the corners of the section */
+    border-radius: 5px;
 }
 
 .comments h1 {
@@ -542,6 +543,21 @@ body{
     color: #fff;
 }
 
+.comments .delete-comment {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    width: 20px;
+    height: 20px;
+    background-color: red;
+    color: white;
+    text-align: center;
+    line-height: 20px;
+    cursor: pointer;
+    border-radius: 50%;
+    font-size: 14px;
+}
+
 @media (max-width: 768px) {
     .comments {
         width: 90%;
@@ -555,4 +571,5 @@ body{
         max-height: 200px;
     }
 }
+
 
