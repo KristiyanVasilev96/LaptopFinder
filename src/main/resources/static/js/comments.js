@@ -66,5 +66,4 @@ function updatePostCommentButtonColor() {
     }
 }
 
-// Invoke the function whenever the input value changes
 messageInput.addEventListener('input', updatePostCommentButtonColor);
