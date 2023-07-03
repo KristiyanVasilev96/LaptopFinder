@@ -5,7 +5,15 @@ body {
     background-attachment: fixed;
     background-size: cover;
     background-color: #464646;
+    animation: moveBackground 20s infinite linear;
 }
+
+@keyframes moveBackground {
+    0% { background-position: 0 0; }
+    50% { background-position: 100% 0; }
+    100% { background-position: 0 0; }
+}
+
 
 .navbar .logo {
     max-height: 50px;
